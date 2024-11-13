@@ -1,0 +1,5 @@
+README
+
+This project is a modularied code library for the
+game engine Godot created by Mathew Fernandez and 
+Ryan English
