@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://fnkfehtfum47"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_q3648"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n1wdn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_e0gdp"]
+sky_material = SubResource("ProceduralSkyMaterial_n1wdn")
+
+[sub_resource type="Environment" id="Environment_5xn05"]
+background_mode = 2
+sky = SubResource("Sky_e0gdp")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xb4hn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gha8d"]
+height = 1.2
+
+[node name="world" type="Node3D"]
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2216, 2.08897, 0.0739331)
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_5xn05")
+
+[node name="player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_q3648")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xb4hn")
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00560945, 0.592253, -0.0102682)
+shape = SubResource("CapsuleShape3D_gha8d")
+disabled = true
+
+[node name="head" type="Node3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="player/head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="player"]
+target_position = Vector3(0, 2, 0)
