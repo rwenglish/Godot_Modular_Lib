@@ -10,13 +10,14 @@ extends CharacterBody3D
 #movement variables
 var current_speed = 5.0
 var free_look_tilt_speed = 8
+var jump_count = 0
+const MAX_JUMP_COUNT = 3
 const WALKING_SPEED = 5.0
 const SPRINTING_SPEED = 8.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 8.0
 const MOUSE_SENSITIVITY = 0.30
 const CROUCHING_SPEED = 2.5
 const CROUCH_DEPTH = -0.5
-
 const PRONE_SPEED = 1.0
 const PRONE_DEPTH = 0.1
 
@@ -27,6 +28,8 @@ var crouching = false
 var free_looking = false 
 var sliding = false 
 var prone = false
+var falling = false
+var jumping = false
 
 #slide vars 
 
@@ -73,7 +76,7 @@ func _physics_process(delta):
 			slide_vector = input_dir
 			free_looking = true
 			slide_timer = slide_timer_max
-			print("slide begin")
+			
 		
 		walking = false
 		sprinting = false 
@@ -111,15 +114,18 @@ func _physics_process(delta):
 		slide_timer -= delta
 		if slide_timer <= 0: 
 			sliding = false 
-			print("slide end")
 			free_looking = false
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	# Handle jump. includes ability to triple jump
+	if jump_count < MAX_JUMP_COUNT and Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
+		jump_count += 1
+	if is_on_floor(): 
+		jump_count = 0
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
