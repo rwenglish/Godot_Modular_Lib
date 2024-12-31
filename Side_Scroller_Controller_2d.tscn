@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://o25uc5bi27e3"]
+
+[ext_resource type="Texture2D" uid="uid://bob6uv5sj8n7r" path="res://Peter_Griffin.png" id="1_l1nvb"]
+[ext_resource type="Texture2D" uid="uid://c5skthg27pxh4" path="res://minecraft-grass-block-icon-2aft9fcpvbp1kru3-2aft9fcpvbp1kru3.png" id="2_ocvkm"]
+[ext_resource type="Script" path="res://Scripts/Side_Scroller_Controller_2d.gd" id="2_okfl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd1o"]
+size = Vector2(936.282, 228.238)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgi85"]
+size = Vector2(214.489, 338.445)
+
+[node name="world" type="Node2D"]
+
+[node name="stage" type="Node2D" parent="."]
+
+[node name="platform" type="StaticBody2D" parent="stage"]
+
+[node name="Sprite2D" type="Sprite2D" parent="stage/platform"]
+position = Vector2(269, 514)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stage/platform/Sprite2D"]
+position = Vector2(0.891632, 11.0947)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(768, 371)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(0.891632, 19.0198)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(504.7, -237.748)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Sprite2D"]
+position = Vector2(0.891632, 19.0198)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_okfl6")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(296, 365)
+scale = Vector2(0.592105, 0.522981)
+texture = ExtResource("1_l1nvb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Sprite2D"]
+position = Vector2(7.62939e-06, -1.91213)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_lgi85")
