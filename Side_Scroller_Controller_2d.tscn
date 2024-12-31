@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Side_Scroller_Controller_2d.gd" id="2_okfl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd1o"]
-size = Vector2(936.282, 228.238)
+size = Vector2(937.173, 217.143)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgi85"]
 size = Vector2(214.489, 338.445)
@@ -17,31 +17,34 @@ size = Vector2(214.489, 338.445)
 [node name="platform" type="StaticBody2D" parent="stage"]
 
 [node name="Sprite2D" type="Sprite2D" parent="stage/platform"]
-position = Vector2(269, 514)
+position = Vector2(269, 502)
 scale = Vector2(0.560729, 0.630919)
 texture = ExtResource("2_ocvkm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stage/platform/Sprite2D"]
-position = Vector2(0.891632, 11.0947)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(269.75, 520.5)
+scale = Vector2(0.560729, 0.630919)
 shape = SubResource("RectangleShape2D_ejd1o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="stage/platform"]
 position = Vector2(768, 371)
 scale = Vector2(0.560729, 0.630919)
 texture = ExtResource("2_ocvkm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
-position = Vector2(0.891632, 19.0198)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(1051.28, 228.571)
+scale = Vector2(0.314417, 0.398059)
 shape = SubResource("RectangleShape2D_ejd1o")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(504.7, -237.748)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(768.5, 383)
 scale = Vector2(0.560729, 0.630919)
-texture = ExtResource("2_ocvkm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Sprite2D"]
-position = Vector2(0.891632, 19.0198)
 shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="Sprite2D3" type="Sprite2D" parent="stage/platform"]
+position = Vector2(1051, 221)
+scale = Vector2(0.314417, 0.398059)
+texture = ExtResource("2_ocvkm")
 
 [node name="player" type="CharacterBody2D" parent="."]
 script = ExtResource("2_okfl6")
@@ -51,7 +54,7 @@ position = Vector2(296, 365)
 scale = Vector2(0.592105, 0.522981)
 texture = ExtResource("1_l1nvb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Sprite2D"]
-position = Vector2(7.62939e-06, -1.91213)
-scale = Vector2(1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(296, 364)
+scale = Vector2(0.592105, 0.522981)
 shape = SubResource("RectangleShape2D_lgi85")
