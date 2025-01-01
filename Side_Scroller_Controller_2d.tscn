@@ -1,0 +1,149 @@
+[gd_scene load_steps=12 format=3 uid="uid://o25uc5bi27e3"]
+
+[ext_resource type="Texture2D" uid="uid://bob6uv5sj8n7r" path="res://Peter_Griffin.png" id="1_l1nvb"]
+[ext_resource type="Texture2D" uid="uid://c5skthg27pxh4" path="res://minecraft-grass-block-icon-2aft9fcpvbp1kru3-2aft9fcpvbp1kru3.png" id="2_ocvkm"]
+[ext_resource type="Script" path="res://Scripts/Side_Scroller_Controller_2d.gd" id="2_okfl6"]
+[ext_resource type="Texture2D" uid="uid://do4tkiouh2qcq" path="res://newspress-collage-5910847-1659435301740.webp" id="2_ot58r"]
+[ext_resource type="AudioStream" uid="uid://cknih0xe5mqud" path="res://Limp Bizkit - My Generation.mp3" id="3_pkj6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd1o"]
+size = Vector2(937.173, 217.143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wveb6"]
+size = Vector2(527, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgi85"]
+size = Vector2(214.489, 338.445)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfsap"]
+size = Vector2(219.556, 172.09)
+
+[sub_resource type="Animation" id="Animation_hydwd"]
+resource_name = "jump"
+step = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d7q57"]
+_data = {
+"jump": SubResource("Animation_hydwd")
+}
+
+[node name="world" type="Node2D"]
+
+[node name="stage" type="Node2D" parent="."]
+
+[node name="platform" type="StaticBody2D" parent="stage"]
+
+[node name="Sprite2D" type="Sprite2D" parent="stage/platform"]
+position = Vector2(269, 502)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(269.75, 520.5)
+scale = Vector2(0.560729, 0.630919)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="Sprite2D2" type="Sprite2D" parent="stage/platform"]
+position = Vector2(768, 371)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(1051.28, 228.571)
+scale = Vector2(0.314417, 0.398059)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(768.5, 383)
+scale = Vector2(0.560729, 0.630919)
+shape = SubResource("RectangleShape2D_ejd1o")
+
+[node name="Sprite2D3" type="Sprite2D" parent="stage/platform"]
+position = Vector2(1051, 221)
+scale = Vector2(0.314417, 0.398059)
+texture = ExtResource("2_ocvkm")
+
+[node name="Sprite2D4" type="Sprite2D" parent="stage/platform"]
+position = Vector2(1577, 321)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(1578.5, 333.5)
+shape = SubResource("RectangleShape2D_wveb6")
+
+[node name="Sprite2D5" type="Sprite2D" parent="stage/platform"]
+position = Vector2(2202.66, 330.78)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(2204.16, 343.28)
+shape = SubResource("RectangleShape2D_wveb6")
+
+[node name="Sprite2D6" type="Sprite2D" parent="stage/platform"]
+position = Vector2(2820.66, 339.78)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(2822.16, 352.28)
+shape = SubResource("RectangleShape2D_wveb6")
+
+[node name="Sprite2D7" type="Sprite2D" parent="stage/platform"]
+position = Vector2(3330.66, 119.78)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(3332.16, 132.28)
+shape = SubResource("RectangleShape2D_wveb6")
+
+[node name="Sprite2D8" type="Sprite2D" parent="stage/platform"]
+position = Vector2(3922.66, -112.22)
+scale = Vector2(0.560729, 0.630919)
+texture = ExtResource("2_ocvkm")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="stage/platform"]
+position = Vector2(3924.16, -99.7201)
+shape = SubResource("RectangleShape2D_wveb6")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="stage"]
+
+[node name="Sprite2D" type="Sprite2D" parent="stage/ParallaxBackground"]
+position = Vector2(926, 461)
+scale = Vector2(3.57419, 2.94492)
+texture = ExtResource("2_ot58r")
+
+[node name="player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_okfl6")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(296, 365)
+scale = Vector2(0.592105, 0.522981)
+texture = ExtResource("1_l1nvb")
+
+[node name="Camera2D" type="Camera2D" parent="player/Sprite2D"]
+
+[node name="StandingCollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(296, 364)
+scale = Vector2(0.592105, 0.522981)
+shape = SubResource("RectangleShape2D_lgi85")
+
+[node name="CrouchingCollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(297, 407)
+scale = Vector2(0.592105, 0.522981)
+shape = SubResource("RectangleShape2D_jfsap")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("3_pkj6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+libraries = {
+"": SubResource("AnimationLibrary_d7q57")
+}
+
+[node name="jumping" type="Sprite2D" parent="player"]
